@@ -33,10 +33,10 @@ They are <u>plenty</u> information around the web.
 # Building with DKMS
 ```bash
 $ sudo apt-get install dkms  # if you've already installed dkms, skip this step.
-$ sudo cp -R . /usr/src/mt7610u_sta-1.0
-$ sudo dkms add mt7610u_sta/1.0
-$ sudo dkms build mt7610u_sta/1.0
-$ sudo dkms install mt7610u_sta/1.0
+$ sudo cp -R . /usr/src/mt7610u-1.0
+$ sudo dkms add mt7610u/1.0
+$ sudo dkms build mt7610u/1.0
+$ sudo dkms install mt7610u/1.0
 ```
 
 **NOTES**  
