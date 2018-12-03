@@ -19,7 +19,7 @@ in source dir
 To install the firmware files  
 `sudo make installfw`
 
-For install the driver use  
+For test the driver use  
 `sudo insmod mt7610u.ko`  
 
 To Unload driver you may need to disconnect the device  
@@ -29,6 +29,15 @@ install the kernel sources and build an <u>external</u> module.
   
 Questions about this will **silently** ignored !  
 They are <u>plenty</u> information around the web.  
+
+# Building with DKMS
+```bash
+$ sudo apt-get install dkms  # if you've already installed dkms, skip this step.
+$ sudo cp -R . /usr/src/mt7610u_sta-1.0
+$ sudo dkms add mt7610u_sta/1.0
+$ sudo dkms build mt7610u_sta/1.0
+$ sudo dkms install mt7610u_sta/1.0
+```
 
 **NOTES**  
 
@@ -68,7 +77,7 @@ scan the missing 2.4GHz band too.
 - fix compile warnings  
 - misc. other stuff  
 
-Hans Ulli Kroll <ulli.kroll@googlemail.com>
+Fork from Hans Ulli Kroll <ulli.kroll@googlemail.com>
 
 
 
