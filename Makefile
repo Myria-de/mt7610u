@@ -357,9 +357,10 @@ CROSS_COMPILE =
 EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
 SUBARCH := $(shell uname -m | sed -e s/i.86/i386/)
 ARCH ?= $(SUBARCH)
+LINUX_SRC_MODULE = /lib/modules/$(shell uname -r)/kernel/drivers/net/wireless/
 endif
 
-export PWD RT28xx_MODE KSRC CROSS_COMPILE CROSS_COMPILE_INCLUDE PLATFORM RELEASE MODULE RTMP_SRC_DIR TARGET
+export PWD RT28xx_MODE KSRC CROSS_COMPILE CROSS_COMPILE_INCLUDE PLATFORM RELEASE MODULE RTMP_SRC_DIR TARGET LINUX_SRC_MODULE
 
 # The targets that may be used.
 PHONY += all build_tools test LINUX clean
@@ -386,6 +387,18 @@ clean:
 
 installfw:
 	cp -n firmware/* /lib/firmware
+
+
+install:
+	cp -n firmware/* /lib/firmware
+	install -d $(LINUX_SRC_MODULE)
+	install -m 644 -c $(addsuffix .ko,$(MOD_NAME)) $(LINUX_SRC_MODULE)
+	/sbin/depmod -a ${shell uname -r}
+	
+uninstall:
+#	rm -rf $(DAT_PATH)
+	rm -rf $(addprefix $(LINUX_SRC_MODULE),$(addsuffix .ko,$(MOD_NAME)))
+	/sbin/depmod -a ${shell uname -r}	
 
 help:
 	@echo "options :"
