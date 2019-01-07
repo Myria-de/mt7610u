@@ -2,7 +2,7 @@
 
 Tested with latest -stable, v4.15.6 and 4.14.79-v7+ (Raspbian)
 
-This raspberry branch supports only cross compiling on x86_64
+**This raspberry branch supports only cross compiling on x86_64.**
 
 Driver for 802.11ac USB Adapter with  
 MT7610U/MT7630u/MT7650u chipset  
