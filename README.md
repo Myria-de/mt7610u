@@ -1,6 +1,6 @@
 <u>**MT7610U for Linux**</u>
 
-Tested with latest -stable, v4.15.6
+Tested with latest -stable, v4.15.6 and 4.14.79-v7+ (Raspbian)
 
 Driver for 802.11ac USB Adapter with  
 MT7610U/MT7630u/MT7650u chipset  
