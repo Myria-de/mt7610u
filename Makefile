@@ -184,6 +184,10 @@ ifeq ($(PLATFORM),PC)
 	EXTRA_CFLAGS := $(WFLAGS)
 endif
 
+ifeq ($(PLATFORM),RASP)
+	EXTRA_CFLAGS := $(WFLAGS)
+endif
+
 
 RT28xx_MODE = STA
 
@@ -196,7 +200,8 @@ PWD = $(shell pwd)
 RTMP_SRC_DIR = $(PWD)/RT$(MODULE)
 
 #PLATFORM: Target platform
-PLATFORM = PC
+#PLATFORM = PC
+PLATFORM = RASP
 
 #APSOC
 
@@ -360,6 +365,12 @@ ARCH ?= $(SUBARCH)
 LINUX_SRC_MODULE = /lib/modules/$(shell uname -r)/kernel/drivers/net/wireless/
 endif
 
+ifeq ($(PLATFORM),RASP)
+# Linux 2.6
+KSRC = ~/raspi_cross/kernel
+EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
+endif
+
 export PWD RT28xx_MODE KSRC CROSS_COMPILE CROSS_COMPILE_INCLUDE PLATFORM RELEASE MODULE RTMP_SRC_DIR TARGET LINUX_SRC_MODULE
 
 # The targets that may be used.
@@ -410,6 +421,5 @@ help:
 
 # Declare the contents of the .PHONY variable as phony.  We keep that information in a variable
 .PHONY: $(PHONY)
-
 
 
